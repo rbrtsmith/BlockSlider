@@ -1,0 +1,2 @@
+# BlockSlider
+Responsive block slider 
