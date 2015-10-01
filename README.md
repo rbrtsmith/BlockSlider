@@ -74,3 +74,6 @@ Default settings:
     itemsClass: 'js-block-slider__items'
 }
 ```
+
+##License
+[MIT License](http://opensource.org/licenses/MIT)
