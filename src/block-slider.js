@@ -30,17 +30,15 @@ function BlockSlider(collection, options) {
     options = options || {};
     options.slideInterval = options.slideInterval || 2000;
     options.slideTransition = options.slideTransition || 400;
-    options.sliderWrapClass = options.sliderWrapClass || '.js-block-slider__outer-wrapper';
     options.sliderContainerClass = options.sliderContainerClass || '.js-block-slider__container';
     options.sliderItemsClass = options.sliderItemsClass || '.js-block-slider__items';
     
     (function cacheSliders() {
         function cache(slider) {
-            const outerWrapper = slider.querySelector(options.sliderWrapClass),
-                container = outerWrapper.querySelector(options.sliderContainerClass),
+            const container = slider.querySelector(options.sliderContainerClass),
                 items = [].slice.call(container.querySelector(options.sliderItemsClass).children, 0),
                 slideTransition = options.slideTransition / 1000;
-            outerWrapper.style.overflow = 'hidden';
+            slider.style.overflow = 'hidden';
             container.style.webkitTransition = slideTransition + 's';
             container.style.MozTransition = slideTransition + 's';
             container.style.msTransition = slideTransition + 's';
@@ -50,14 +48,14 @@ function BlockSlider(collection, options) {
             container.style.msBackfaceVisibility = 'hidden';
             container.style.backfaceVisibility = 'hidden';
             sliders.push({
-                outerWrapper,
+                slider,
                 container,
                 items,
                 slidePosition: 0,
                 itemsPerSlide: 0,
                 itemWidth: 0,
                 containerWidth: 0,
-                outerWrapperWidth: 0
+                sliderWidth: 0
             });
         }
         if (collection.length) {
@@ -70,7 +68,7 @@ function BlockSlider(collection, options) {
     })();
 
     function hasReachedEnd(slider) {
-        return -(slider.slidePosition + 1) > slider.containerWidth - slider.outerWrapperWidth;
+        return -(slider.slidePosition + 1) > slider.containerWidth - slider.sliderWidth;
     }
 
     function slide() {
@@ -101,11 +99,11 @@ function BlockSlider(collection, options) {
             });
             totalWidth = itemWidth * slider.items.length;
             slider.container.style.width = totalWidth + 'px';
-            slider.itemsPerSlide = Math.round(slider.outerWrapper.offsetWidth / itemWidth);
+            slider.itemsPerSlide = Math.round(slider.slider.offsetWidth / itemWidth);
             slider.itemWidth = itemWidth;
             slider.slidePosition = 0;
             slider.containerWidth = slider.container.offsetWidth;
-            slider.outerWrapperWidth = slider.outerWrapper.offsetWidth;
+            slider.sliderWidth = slider.slider.offsetWidth;
         });
     }
     setWidths();
