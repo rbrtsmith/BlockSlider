@@ -54,5 +54,23 @@ $('#Block-slider').BlockSlider();
 ```
 
 ##Settings
-The Block Slider can take an optional second parameter (First when using jQuery).
+The Block Slider can take an optional second parameter (First when using jQuery).  
 Default settings:
+```javascript
+{
+    //Interval time between slides, ms
+    slideInterval: 2000,
+    
+    //Transition time when sliding, ms
+    slideTransition: 400,
+    
+    //Wrap class
+    wrapClass: '.js-block-slider__outer-wrapper',
+    
+    //Container class
+    containerClass: '.js-block-slider__container,
+    
+    //Items class
+    itemsClass: 'js-block-slider__items'
+}
+```
