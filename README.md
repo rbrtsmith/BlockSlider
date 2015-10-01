@@ -11,6 +11,7 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 * API allows for timing adjustments to transition, and slide interval.
 * Number of items in view controlled by CSS / whatever grid system you are using.
 * Built with performance in mind, uses minimal DOM lookups and caches values wherever possible.
+* Written in ES6/ES2015 and transpiled into ES5 via Babel
 
 ##Useage
 HTML markup - This example is using the Twitter Bootstrap grid, and for large screens displays 6 items with no sliding, smaller screens it displays 4 items, and 3 items on the smallest screens.  You may use any grid system you like, or roll with your own.
