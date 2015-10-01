@@ -29,9 +29,7 @@
         "browser": true
     },
     "globals": {
-        "WW" : true,
         "jQuery" : true,
-        "$" : true
     },
     "extends": "eslint:recommended"
 }
