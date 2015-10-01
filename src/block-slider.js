@@ -28,8 +28,8 @@ function BlockSlider(collection, options) {
     }
     
     options = options || {};
-    options.slideInterval = options.slideInterval || 500;
-    options.slideTransition = options.slideTransition || 100;
+    options.slideInterval = options.slideInterval || 2000;
+    options.slideTransition = options.slideTransition || 400;
     options.sliderWrapClass = options.sliderWrapClass || '.js-block-slider__outer-wrapper';
     options.sliderContainerClass = options.sliderContainerClass || '.js-block-slider__container';
     options.sliderItemsClass = options.sliderItemsClass || '.js-block-slider__items';
