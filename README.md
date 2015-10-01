@@ -13,7 +13,7 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 
 ##Useage
 HTML markup
-```
+```html
   <div class="js-block-slider">
       <div class="js-block-slider__outer-wrapper">
           <div class="js-block-slider__container">
