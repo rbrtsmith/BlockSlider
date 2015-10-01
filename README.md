@@ -13,6 +13,7 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 
 ##Useage
 HTML markup - This example is using the Twitter Bootstrap grid, and for large screens displays 6 items with no sliding, smaller screens it displays 4 items, and 3 items on the smallest screens.  You may use any grid system you like, or roll with your own.
+You are not restricted to use with `<div>` you can use any block-level elements that suit your purpose.  You can also nest anything inside of the individual items.
 ```html
 <div id="Block-slider">
     <div class="js-block-slider__outer-wrapper">
@@ -51,3 +52,7 @@ Or JavaScript + jQuery
 ```javascript
 $('#Block-slider').BlockSlider();
 ```
+
+##Settings
+The Block Slider can take an optional second parameter (First when using jQuery).
+Default settings:
