@@ -68,7 +68,7 @@ Default settings:
     wrapClass: '.js-block-slider__outer-wrapper',
     
     //Container class
-    containerClass: '.js-block-slider__container,
+    containerClass: '.js-block-slider__container',
     
     //Items class
     itemsClass: 'js-block-slider__items'
