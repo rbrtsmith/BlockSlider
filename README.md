@@ -12,28 +12,28 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 * Number of items in view controlled by CSS / whatever grid system you are using.
 
 ##Useage
-HTML markup
+HTML markup - This example is using the Twitter Bootstrap grid, and for large screens displays 6 items with no sliding, smaller screens it displays 4 items, and 3 items on the smallest screens.  You may use any grid system you like, or roll with your own.
 ```html
   <div class="js-block-slider">
       <div class="js-block-slider__outer-wrapper">
           <div class="js-block-slider__container">
               <div class="row js-block-slider__items">
-                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                  <div class="col-md-2 col-sm-3 col-xs-4">
                      Logo
                   </div>
-                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                  <div class="col-md-2 col-sm-3 col-xs-4">
                      Logo
                   </div>
-                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                  <div class="col-md-2 col-sm-3 col-xs-4">
                      Logo
                   </div>
-                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                  <div class="col-md-2 col-sm-3 col-xs-4">
                      Logo
                   </div>
-                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                  <div class="col-md-2 col-sm-3 col-xs-4">
                      Logo
                   </div>
-                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                  <div class="col-md-2 col-sm-3 col-xs-4">
                      Logo
                   </div>
               </div>                    
