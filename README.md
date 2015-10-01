@@ -5,7 +5,7 @@ This slider does not come with any controls, it autoslides based on the supplied
 
 It's main use is for grouping company logos onto a single row, as the screen size reduces the logos do not stack, instead the grid dictates how many items to show on the screen at any given moment.  The cycle resets upon an screen resize event.
 
-* IE9+ compatible as it uses CSS animated transforms
+* IE9+ compatible as it uses CSS transforms. On IE9 there is no animation between slide transitions due to lack of CSS transition support on IE9.
 * Library agnostic.  If jQuery is present it will register itself as a plugin
 * Only 2.2k minified.
 * API allows for timing adjustments to transition, and slide interval.
