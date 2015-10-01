@@ -10,3 +10,25 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 * Only 2.4k minified.
 * API allows for timing adjustments to transition, and slide interval.
 * Number of items in view controlled by CSS / whatever grid system you are using.
+
+##Useage
+HTML markup
+```
+  <div class="js-block-slider">
+      <div class="js-block-slider__outer-wrapper">
+          <div class="js-block-slider__container">
+              <div class="row js-block-slider__items">
+                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                     Logo
+                  </div>
+                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                     Logo
+                  </div>
+                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                     Logo
+                  </div>
+              </div>                    
+          </div>                    
+      </div>
+  </div>
+  ```
