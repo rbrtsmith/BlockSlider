@@ -7,7 +7,7 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 
 * IE9+ compatible as it uses CSS animated transforms
 * Library agnostic.  If jQuery is present it will register itself as a plugin
-* Only 2.4k minified.
+* Only 2.3k minified.
 * API allows for timing adjustments to transition, and slide interval.
 * Number of items in view controlled by CSS / whatever grid system you are using.
 
