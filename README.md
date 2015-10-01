@@ -14,35 +14,40 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 ##Useage
 HTML markup - This example is using the Twitter Bootstrap grid, and for large screens displays 6 items with no sliding, smaller screens it displays 4 items, and 3 items on the smallest screens.  You may use any grid system you like, or roll with your own.
 ```html
-  <div id="Block-slider">
-      <div class="js-block-slider__outer-wrapper">
-          <div class="js-block-slider__container">
-              <div class="row js-block-slider__items">
-                  <div class="col-md-2 col-sm-3 col-xs-4">
-                     Logo
-                  </div>
-                  <div class="col-md-2 col-sm-3 col-xs-4">
-                     Logo
-                  </div>
-                  <div class="col-md-2 col-sm-3 col-xs-4">
-                     Logo
-                  </div>
-                  <div class="col-md-2 col-sm-3 col-xs-4">
-                     Logo
-                  </div>
-                  <div class="col-md-2 col-sm-3 col-xs-4">
-                     Logo
-                  </div>
-                  <div class="col-md-2 col-sm-3 col-xs-4">
-                     Logo
-                  </div>
-              </div>                    
-          </div>                    
-      </div>
-  </div>
-  ```
+<div id="Block-slider">
+    <div class="js-block-slider__outer-wrapper">
+        <div class="js-block-slider__container">
+            <div class="row js-block-slider__items">
+                <div class="col-md-2 col-sm-3 col-xs-4">
+                   ...
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-4">
+                   ...
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-4">
+                   ...
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-4">
+                   ...
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-4">
+                   ...
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-4">
+                   ...
+                </div>
+            </div>                    
+        </div>                    
+    </div>
+</div>
+```
+
 JavaScript
 ```javascript
 BlockSlider(document.getElementById('Block-slider'));
 ```
 
+Or JavaScript + jQuery
+```javascript
+$('#Block-slider').BlockSlider();
+```
