@@ -27,6 +27,15 @@ HTML markup
                   <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
                      Logo
                   </div>
+                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                     Logo
+                  </div>
+                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                     Logo
+                  </div>
+                  <div class="col-md-2 col-sm-3 col-xs-4 col-xxs-6">
+                     Logo
+                  </div>
               </div>                    
           </div>                    
       </div>
