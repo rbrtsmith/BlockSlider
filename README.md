@@ -76,5 +76,23 @@ Default settings:
 }
 ```
 
+##Examples
+
+JavaScript
+```javascript
+BlockSlider(document.getElementById('Block-slider'), {
+    slideInterval: 1000,
+    slideTransition: 200
+});
+```
+
+JavaScript + jQuery
+```javascript
+$('#Block-slider').BlockSlider({
+    slideInterval: 1000,
+    slideTransition: 200
+});
+```
+
 ##License
 [MIT License](http://opensource.org/licenses/MIT)
