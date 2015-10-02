@@ -24,21 +24,21 @@ function BlockSlider(collection, options) {
     }
     
     options = options || {};
-    options.slideInterval = options.slideInterval || 2000;
-    options.slideTransition = options.slideTransition || 400;
-    options.sliderContainerClass = options.sliderContainerClass || '.js-block-slider__container';
-    options.sliderItemsClass = options.sliderItemsClass || '.js-block-slider__items';
+    options.sInterval = options.sInterval || 2000;
+    options.sTransition = options.sTransition || 400;
+    options.containerClass = options.containerClass || '.js-block-slider__container';
+    options.itemsClass = options.itemsClass || '.js-block-slider__items';
     
     (function cacheSliders() {
         function cache(slider) {
-            const container = slider.querySelector(options.sliderContainerClass),
-                items = [].slice.call(container.querySelector(options.sliderItemsClass).children, 0),
-                slideTransition = options.slideTransition / 1000;
+            const container = slider.querySelector(options.containerClass),
+                items = [].slice.call(container.querySelector(options.itemsClass).children, 0),
+                sTransition = options.sTransition / 1000;
             slider.style.overflow = 'hidden';
-            container.style.webkitTransition = slideTransition + 's';
-            container.style.MozTransition = slideTransition + 's';
-            container.style.msTransition = slideTransition + 's';
-            container.style.transition = slideTransition + 's';
+            container.style.webkitTransition = sTransition + 's';
+            container.style.MozTransition = sTransition + 's';
+            container.style.msTransition = sTransition + 's';
+            container.style.transition = sTransition + 's';
             container.style.webkitBackfaceVisibility = 'hidden';
             container.style.MozBackfaceVisibility = 'hidden';
             container.style.msBackfaceVisibility = 'hidden';
@@ -114,7 +114,7 @@ function BlockSlider(collection, options) {
 
     setInterval(() => {
         slide(sliders);
-    }, options.slideInterval);
+    }, options.sInterval);
 }
 
 // if jQuery is present, create a plugin.
