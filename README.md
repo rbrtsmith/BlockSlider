@@ -59,10 +59,10 @@ Default settings:
 ```javascript
 {
     //Interval time between slides, ms
-    slideInterval: 2000,
+    sInterval: 2000,
     
     //Transition time when sliding, ms
-    slideTransition: 400,
+    sTransition: 400,
     
     //Container class
     containerClass: '.js-block-slider__container',
@@ -77,16 +77,26 @@ Default settings:
 JavaScript
 ```javascript
 BlockSlider(document.getElementById('Block-slider'), {
-    slideInterval: 1000,
-    slideTransition: 200
+    sInterval: 1000,
+    sTransition: 200
 });
 ```
 
 JavaScript + jQuery
 ```javascript
 $('#Block-slider').BlockSlider({
-    slideInterval: 1000,
-    slideTransition: 200
+    sInterval: 1000,
+    sTransition: 200
+});
+```
+
+JavaScript + jQuery - changing classes
+```javascript
+$('#Block-slider').BlockSlider({
+    sInterval: 1000,
+    sTransition: 200,
+    containerClass: '.logos-wrap',
+    itemsClass: '.logos'
 });
 ```
 
