@@ -7,7 +7,7 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 
 * IE9+ compatible as it uses CSS transforms. On IE9 there is no animation between slide transitions due to lack of CSS transition support on IE9.
 * Library agnostic.  If jQuery is present it will register itself as a plugin
-* Only 2.2k minified.
+* Only 2.1k minified. ~1kb with gZip.
 * API allows for timing adjustments to transition, and slide interval.
 * Number of items in view controlled by CSS / whatever grid system you are using.
 * Built with performance in mind, uses minimal DOM lookups and caches values wherever possible.
@@ -53,7 +53,7 @@ Or JavaScript + jQuery
 $('#Block-slider').BlockSlider();
 ```
 
-##Settings
+##Settings / API
 The Block Slider can take an optional second parameter (First when using jQuery).  
 Default settings:
 ```javascript
