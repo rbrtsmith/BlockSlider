@@ -11,19 +11,15 @@ function BlockSlider(collection, options) {
         return;
     }
 
-    function debounce (func, wait, immediate) {
+    function debounce (fn, wait) {
         let timeout;
         return () => {
-            const context = this, 
-                args = arguments;
             const later = () => {
                 timeout = null;
-                if (!immediate) func.apply(context, args);
+                fn.apply(this, arguments);
             };
-            const callNow = immediate && !timeout;
             clearTimeout(timeout);
             timeout = setTimeout(later, wait);
-            if (callNow) func.apply(context, args);
         };
     }
     
