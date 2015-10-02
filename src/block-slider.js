@@ -55,9 +55,7 @@ function BlockSlider(collection, options) {
             });
         }
         if (collection.length) {
-            [].forEach.call(collection,slider => {
-                cache(slider); 
-            });
+            [].forEach.call(collection, cache);
         } else {
             cache(collection);
         }
