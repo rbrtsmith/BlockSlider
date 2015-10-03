@@ -9,12 +9,12 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     header = require('gulp-header'),
     banner = ['/**',
-		' * Block Slider a responsive autoslide component.',
-		' * v. 0.1.0',
-		' * Copyright Robert Smith http://rbrtsmith.com',
-		' * MIT License',
-		' */',
-		''].join('\n');
+        ' * Block Slider a responsive autoslide component.',
+        ' * v. 0.1.0',
+        ' * Copyright Robert Smith http://rbrtsmith.com',
+        ' * MIT License',
+        ' */',
+        ''].join('\n');
 
 
 gulp.task('JS', function() {
