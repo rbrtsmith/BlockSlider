@@ -17,6 +17,7 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 http://codepen.io/rbrtsmith/pen/ZbeXqa
 
 ##Useage
+**Please note &mdash;** Block Slider is currently undergoing beta testing, I wouldn't recommend you use it in production just yet.  
 HTML markup - This example is using the Twitter Bootstrap grid, and for large screens displays 6 items with no sliding, smaller screens it displays 4 items, and 3 items on the smallest screens.  You may use any grid system you like, or roll with your own.
 You are not restricted to uses the `<div>`s in this example you can use any block-level elements that suit your purpose.  You can also nest anything inside of the individual items.
 ```html
