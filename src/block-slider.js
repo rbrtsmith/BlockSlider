@@ -48,7 +48,7 @@ function BlockSlider(collection, opts) {
     function slide() {
         sliders.forEach(s => {
             const wrap = s.wrap,
-                str = `translate3d(${s.slidePosition}px, 0, 0)`
+                str = `translate3d(${s.slidePosition}px, 0, 0)`;
             wrap.style.webkitTransform = str;
             wrap.style.msTransform = str;
             wrap.style.transform = str;
