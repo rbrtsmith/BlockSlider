@@ -1,126 +1,115 @@
-function BlockSlider(collection, options) {
+function BlockSlider(collection, opts) {
     'use strict';
-   
-    const sliders = [];
-    
+    const safariFixDelay = /constructor/i.test(window.HTMLElement) ? 500 : 0,
+        sliders = [];
+    let resizeTimer;
+
     // if collection not found, return.
-    if(!collection) {
-        return;
-    }
-    if (!collection.length && !collection.querySelector) {
+    if (!collection || !collection.length && !collection.querySelector) {
         return;
     }
 
-    function debounce (fn, wait) {
-        let timeout;
-        return () => {
-            const later = () => {
-                timeout = null;
-                fn.apply(this, arguments);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-    
-    options = options || {};
-    options.sInterval = options.sInterval || 2000;
-    options.sTransition = options.sTransition || 400;
-    options.containerClass = options.containerClass || '.js-block-slider__container';
-    options.itemsClass = options.itemsClass || '.js-block-slider__items';
-    
-    (function cacheSliders() {
-        function cache(slider) {
-            const container = slider.querySelector(options.containerClass),
-                items = [].slice.call(container.querySelector(options.itemsClass).children, 0),
-                sTransition = options.sTransition / 1000;
-            slider.style.overflow = 'hidden';
-            container.style.webkitTransition = sTransition + 's';
-            container.style.MozTransition = sTransition + 's';
-            container.style.msTransition = sTransition + 's';
-            container.style.transition = sTransition + 's';
-            container.style.webkitBackfaceVisibility = 'hidden';
-            container.style.MozBackfaceVisibility = 'hidden';
-            container.style.msBackfaceVisibility = 'hidden';
-            container.style.backfaceVisibility = 'hidden';
-            sliders.push({
-                slider,
-                container,
-                items,
-                slidePosition: 0,
-                itemsPerSlide: 0,
-                itemWidth: 0,
-                containerWidth: 0,
-                sliderWidth: 0
-            });
-        }
-        if (collection.length) {
-            [].forEach.call(collection, cache);
-        } else {
-            cache(collection);
-        }
-    })();
+    opts = opts || {};
+    opts.sInterval = opts.sInterval || 2000;
+    opts.sTransition = opts.sTransition || 400;
+    opts.wrapClass = opts.wrapClass || '.js-block-slider__wrap';
+    opts.itemsClass = opts.itemsClass || '.js-block-slider__items';
 
-    function hasReachedEnd(slider) {
-        return -(slider.slidePosition + 1) > slider.containerWidth - slider.sliderWidth;
+    function cache(slider) {
+        const wrap = slider.querySelector(opts.wrapClass),
+            items = [].slice.call(wrap.querySelector(opts.itemsClass).children, 0),
+            sTransition = opts.sTransition / 1000;
+        slider.setAttribute('style', 'overflow: hidden; opacity: 0');
+        wrap.setAttribute('style', `
+            -webkit-transition: -webkit-transform ${sTransition}s;
+            transition: transform ${sTransition}s;
+        `);
+        sliders.push({
+            slider,
+            wrap,
+            items,
+            slidePosition: 0,
+            itemsPerSlide: 0,
+            itemWidth: 0,
+            wrapWidth: 0,
+            sliderWidth: 0
+        });
+    }
+    if (collection.length) {
+        [].forEach.call(collection, cache);
+    } else {
+        cache(collection);
+    }
+
+    function hasReachedEnd(s) {
+        return -(s.slidePosition + 1) > s.wrapWidth - s.sliderWidth;
     }
 
     function slide() {
-        sliders.forEach(slider => {
-
-            const container = slider.container;
-            container.style.webkitTransform = 'translateX(' + slider.slidePosition + 'px)';
-            container.style.MozTransform = 'translateX(' + slider.slidePosition + 'px)';
-            container.style.msTransform = 'translateX(' + slider.slidePosition + 'px)';
-            container.style.transform = 'translateX(' + slider.slidePosition + 'px)';
-            slider.slidePosition -= slider.itemWidth;
-            if (hasReachedEnd(slider)) {
-                slider.slidePosition = 0;
+        sliders.forEach(s => {
+            const wrap = s.wrap,
+                str = `translate3d(${s.slidePosition}px, 0, 0)`
+            wrap.style.webkitTransform = str;
+            wrap.style.msTransform = str;
+            wrap.style.transform = str;
+            s.slidePosition -= s.itemWidth;
+            if (hasReachedEnd(s)) {
+                s.slidePosition = 0;
             }
         });
     }
 
     function setWidths() {
-        sliders.forEach(slider => {
-            let itemWidth = 0,
-                totalWidth = 0;
-            slider.container.style.removeProperty('width');
-            slider.items.forEach((item, i, arr) => {
+        sliders.forEach(s => {
+            s.slider.style.opacity = 0;
+            // remove widths for wrap and all items.
+            s.wrap.style.removeProperty('width');
+            s.items.forEach((item, i, arr) => {
                 item.style.removeProperty('width');
-                if (!i) {
-                    itemWidth = item.offsetWidth;
-                }
-                item.style.width = itemWidth + 'px';
             });
-            totalWidth = itemWidth * slider.items.length;
-            slider.container.style.width = totalWidth + 'px';
-            slider.sliderWidth = slider.slider.offsetWidth;
-            slider.itemsPerSlide = Math.round(slider.sliderWidth / itemWidth);
-            slider.itemWidth = itemWidth;
-            slider.slidePosition = 0;
-            slider.containerWidth = totalWidth;
+            // create a slight delay.
+            setTimeout(function() {
+
+                // get the default CSS item width in pixels.
+                let itemWidth = s.items[0].offsetWidth;
+                // loop through all items and set their width in pixels
+                // to the calculated width.
+                s.items.forEach((item) => {
+                    item.style.width = itemWidth + 'px';
+                });
+                //Set wrap width equal to total width of items
+                s.wrapWidth = itemWidth * s.items.length;
+                s.wrap.style.width = s.wrapWidth + 'px';
+                s.sliderWidth = s.slider.offsetWidth;
+                s.itemsPerSlide = Math.round(s.sliderWidth / itemWidth);
+                s.itemWidth = itemWidth;
+                s.slidePosition = 0;
+                setTimeout(function() {
+                    s.slider.style.opacity = 1;
+                    slide();
+                }, safariFixDelay);
+            }, safariFixDelay);
         });
     }
     setWidths();
 
     window.addEventListener('resize', () => {
-        window.requestAnimationFrame(debounce(() => {
-            setWidths();
-            slide();
-        }, 300));
+        // call setWidths once the screen has finished resizing.
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(setWidths, 250);
     });
 
     setInterval(() => {
         slide(sliders);
-    }, options.sInterval);
+    }, opts.sInterval);
 }
 
 // if jQuery is present, create a plugin.
-if (jQuery) {
+if (window.jQuery) {
     (($) => {
-        $.fn.BlockSlider = function(options) {
-            BlockSlider(this, options);
+        $.fn.BlockSlider = function(opts) {
+            BlockSlider(this, opts);
             return this;
         };
-    })(jQuery);
+    })(window.jQuery);
 }
