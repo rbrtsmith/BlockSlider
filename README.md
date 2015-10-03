@@ -13,6 +13,9 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 * Built with performance in mind, uses minimal DOM lookups and caches values wherever possible.
 * Written in ES6/ES2015 and transpiled into ES5 via Babel
 
+##Demo
+http://codepen.io/rbrtsmith/pen/ZbeXqa
+
 ##Useage
 HTML markup - This example is using the Twitter Bootstrap grid, and for large screens displays 6 items with no sliding, smaller screens it displays 4 items, and 3 items on the smallest screens.  You may use any grid system you like, or roll with your own.
 You are not restricted to uses the `<div>`s in this example you can use any block-level elements that suit your purpose.  You can also nest anything inside of the individual items.
@@ -45,12 +48,12 @@ You are not restricted to uses the `<div>`s in this example you can use any bloc
 
 JavaScript
 ```javascript
-BlockSlider(document.getElementById('Block-slider'));
+BlockSlider(document.getElementById('block-slider'));
 ```
 
 Or JavaScript + jQuery
 ```javascript
-$('#Block-slider').BlockSlider();
+$('#block-slider').BlockSlider();
 ```
 
 ##Settings / API
@@ -76,7 +79,7 @@ Default settings:
 
 JavaScript
 ```javascript
-BlockSlider(document.getElementById('Block-slider'), {
+BlockSlider(document.getElementById('block-slider'), {
     sInterval: 1000,
     sTransition: 200
 });
@@ -84,7 +87,7 @@ BlockSlider(document.getElementById('Block-slider'), {
 
 JavaScript + jQuery
 ```javascript
-$('#Block-slider').BlockSlider({
+$('#block-slider').BlockSlider({
     sInterval: 1000,
     sTransition: 200
 });
@@ -92,7 +95,7 @@ $('#Block-slider').BlockSlider({
 
 JavaScript + jQuery - changing classes
 ```javascript
-$('#Block-slider').BlockSlider({
+$('#block-slider').BlockSlider({
     sInterval: 1000,
     sTransition: 200,
     containerClass: '.logos-wrap',
