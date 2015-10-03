@@ -20,17 +20,17 @@ var gulp = require('gulp'),
 gulp.task('JS', function() {
 	return gulp
 		.src('src/block-slider.js')
-		.pipe(plumber())
-		.pipe(esLint())
-		.pipe(esLint.format())
+        .pipe(plumber())
+        .pipe(esLint())
+        .pipe(esLint.format())
         .pipe(sourcemaps.init())
-    		.pipe(babel())
+            .pipe(babel())
             .pipe(sourcemaps.init())
-    		.pipe(uglify())
-    		.pipe(rename({suffix: '.min'}))
-        .pipe(header(banner))
+            .pipe(uglify())
+            .pipe(rename({suffix: '.min'}))
+            .pipe(header(banner))
         .pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('dist'))
         .pipe(livereload());
 });
 
