@@ -18,7 +18,7 @@ var gulp = require('gulp'),
 
 
 gulp.task('JS', function() {
-	return gulp
+    return gulp
 		.src('src/block-slider.js')
         .pipe(plumber())
         .pipe(esLint())
