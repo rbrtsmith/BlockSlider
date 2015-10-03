@@ -20,10 +20,7 @@ function BlockSlider(collection, opts) {
             items = [].slice.call(wrap.querySelector(opts.itemsClass).children, 0),
             sTransition = opts.sTransition / 1000;
         slider.setAttribute('style', 'overflow: hidden; opacity: 0');
-        wrap.setAttribute('style', `
-            -webkit-transition: -webkit-transform ${sTransition}s;
-            transition: transform ${sTransition}s;
-        `);
+        wrap.setAttribute('style', `-webkit-transition: -webkit-transform ${sTransition}s;transition: transform ${sTransition}s;`);
         sliders.push({
             slider,
             wrap,
