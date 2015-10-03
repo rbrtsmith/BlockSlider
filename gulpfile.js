@@ -5,6 +5,8 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     rename = require('gulp-rename'),
     babel = require('gulp-babel'),
+    livereload = require('gulp-livereload'),
+    sourcemaps = require('gulp-sourcemaps'),
     header = require('gulp-header'),
     banner = ['/**',
 		' * Block Slider a responsive autoslide component.',
@@ -22,10 +24,16 @@ gulp.task('JS', function() {
 		.pipe(esLint())
 		.pipe(esLint.format())
 		.pipe(babel())
+        .pipe(sourcemaps.init())
 		.pipe(uglify())
 		.pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write('.'))
 		.pipe(header(banner))
 		.pipe(gulp.dest('dist'))
+        .pipe(livereload());
 });
 
-gulp.task('default', ['JS']);
+gulp.task('default', ['JS'], function() {
+    livereload.listen();
+    gulp.watch('src/block-slider.js', ['JS']);
+});
