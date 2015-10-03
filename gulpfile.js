@@ -23,12 +23,13 @@ gulp.task('JS', function() {
 		.pipe(plumber())
 		.pipe(esLint())
 		.pipe(esLint.format())
-		.pipe(babel())
         .pipe(sourcemaps.init())
-		.pipe(uglify())
-		.pipe(rename({suffix: '.min'}))
+    		.pipe(babel())
+            .pipe(sourcemaps.init())
+    		.pipe(uglify())
+    		.pipe(rename({suffix: '.min'}))
+        .pipe(header(banner))
         .pipe(sourcemaps.write('.'))
-		.pipe(header(banner))
 		.pipe(gulp.dest('dist'))
         .pipe(livereload());
 });

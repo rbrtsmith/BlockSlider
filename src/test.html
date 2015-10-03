@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <style class="cp-pen-styles">*,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+        }
+
+        .site-wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1em 0.5em;
+        }
+
+        .block-slider {
+            line-height: 100px;
+        }
+        .block-slider__items {
+            margin: -0.5em;
+        }
+        .block-slider__items::after {
+            display: table;
+            clear: both;
+            content: " ";
+        }
+        .block-slider__item {
+            width: 50%;
+            float: left;
+            padding: 0 0.5em;
+        }
+        @media (min-width: 500px) {
+            .block-slider__item {
+                width: 33.33333%;
+            }
+        }
+        @media (min-width: 700px) {
+            .block-slider__item {
+                width: 25%;
+            }
+        }
+        @media (min-width: 800px) {
+            .block-slider__item {
+                width: 20%;
+            }
+        }
+        @media (min-width: 900px) {
+            .block-slider__item {
+                width: 16.66667%;
+            }
+        }
+        @media (min-width: 1000px) {
+            .block-slider__item {
+                width: 14.2857142857%;
+            }
+        }
+        .block-slider__image {
+            padding: 0 0.5em;
+            background: #45d296;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="site-wrap">
+        <h1>Block Slider</h1>
+        <p>Reduce the width of the viewport to see the # of visible items reduce!</p>
+    </div>
+    <div class="site-wrap">
+        <div id="block-slider">
+            <div class="block-slider js-block-slider__wrap">
+                <div class="block-slider__items js-block-slider__items">
+                    <div class="block-slider__item">
+                        <div class="block-slider__image">
+                            Image-1
+                        </div>
+                    </div>
+                    <div class="block-slider__item">
+                        <div class="block-slider__image">
+                            Image-2
+                        </div>
+                    </div>
+                    <div class="block-slider__item">
+                        <div class="block-slider__image">
+                            Image-3
+                        </div>
+                    </div>
+                    <div class="block-slider__item">
+                        <div class="block-slider__image">
+                            Image-4
+                        </div>
+                    </div>
+                    <div class="block-slider__item">
+                        <div class="block-slider__image">
+                            Image-5
+                        </div>
+                    </div>
+                    <div class="block-slider__item">
+                        <div class="block-slider__image">
+                            Image-6
+                        </div>
+                    </div>
+                    <div class="block-slider__item">
+                        <div class="block-slider__image">
+                            Image-7
+                        </div>
+                    </div>
+                    <div class="block-slider__item">
+                        <div class="block-slider__image">
+                            Image-8
+                        </div>
+                    </div>
+                    <div class="block-slider__item">
+                        <div class="block-slider__image">
+                            Image-9
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../dist/block-slider.min.js"></script>
+    <script>
+        BlockSlider(document.getElementById('block-slider'), {
+            sInterval: 1500,
+            sTransition: 600,
+        });
+    </script>
+</body>
+</html>

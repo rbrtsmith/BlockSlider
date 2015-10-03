@@ -1,4 +1,9 @@
-function BlockSlider(collection, opts) {
+function BlockSlider(collection, {
+    sInterval = 2000,
+    sTransition = 400,
+    wrapClass = '.js-block-slider__wrap',
+    itemsClass = '.js-block-slider__items'
+}) {
     'use strict';
     const safariFixDelay = /constructor/i.test(window.HTMLElement) ? 500 : 0,
         sliders = [];
@@ -9,18 +14,14 @@ function BlockSlider(collection, opts) {
         return;
     }
 
-    opts = opts || {};
-    opts.sInterval = opts.sInterval || 2000;
-    opts.sTransition = opts.sTransition || 400;
-    opts.wrapClass = opts.wrapClass || '.js-block-slider__wrap';
-    opts.itemsClass = opts.itemsClass || '.js-block-slider__items';
+    const calcTransiton = () => sTransition / 1000;
 
     function cache(slider) {
-        const wrap = slider.querySelector(opts.wrapClass),
-            items = [].slice.call(wrap.querySelector(opts.itemsClass).children, 0),
-            sTransition = opts.sTransition / 1000;
+        const wrap = slider.querySelector(wrapClass),
+            items = [].slice.call(wrap.querySelector(itemsClass).children, 0),
+            duration = calcTransiton();
         slider.setAttribute('style', 'overflow: hidden; opacity: 0');
-        wrap.setAttribute('style', `-webkit-transition: -webkit-transform ${sTransition}s;transition: transform ${sTransition}s;`);
+        wrap.setAttribute('style', `-webkit-transition: -webkit-transform ${duration}s;transition: transform ${duration}s;`);
         sliders.push({
             slider,
             wrap,
@@ -38,9 +39,7 @@ function BlockSlider(collection, opts) {
         cache(collection);
     }
 
-    function hasReachedEnd(s) {
-        return -(s.slidePosition + 1) > s.wrapWidth - s.sliderWidth;
-    }
+    const hasReachedEnd = s => -(s.slidePosition + 1) > s.wrapWidth - s.sliderWidth;
 
     function slide() {
         sliders.forEach(s => {
@@ -56,49 +55,62 @@ function BlockSlider(collection, opts) {
         });
     }
 
-    function setWidths() {
-        sliders.forEach(s => {
+    function calcAndSetWidths() {
+        function removeInlineWidths(s) {
+            // Temporarily hide the slider
             s.slider.style.opacity = 0;
-            // remove widths for wrap and all items.
+            // Remove widths for wrap and all items.
             s.wrap.style.removeProperty('width');
             s.items.forEach((item, i, arr) => {
                 item.style.removeProperty('width');
             });
-            // create a slight delay.
-            setTimeout(function() {
+        }
 
+        const calcItemWidth = s => s.items[0].offsetWidth;
+
+        const calcItemsPerSlide = s => Math.round(s.sliderWidth / s.itemWidth);
+
+        function setWidths(s) {
+            // loop through all items and set their width in pixels
+            // to the calculated width.
+            s.items.forEach((item) => {
+                item.style.width = s.itemWidth + 'px';
+            });
+            // Set wrap width equal to total width of items.
+            s.wrapWidth = s.itemWidth * s.items.length;
+            s.wrap.style.width = s.wrapWidth + 'px';
+            s.sliderWidth = s.slider.offsetWidth;
+        }
+
+        sliders.forEach(s => {
+            removeInlineWidths(s);
+            // create a slight delay for Safari being rubbishly slow at layout calcs.
+            setTimeout(() => {
                 // get the default CSS item width in pixels.
-                let itemWidth = s.items[0].offsetWidth;
-                // loop through all items and set their width in pixels
-                // to the calculated width.
-                s.items.forEach((item) => {
-                    item.style.width = itemWidth + 'px';
-                });
-                //Set wrap width equal to total width of items
-                s.wrapWidth = itemWidth * s.items.length;
-                s.wrap.style.width = s.wrapWidth + 'px';
-                s.sliderWidth = s.slider.offsetWidth;
-                s.itemsPerSlide = Math.round(s.sliderWidth / itemWidth);
-                s.itemWidth = itemWidth;
+                s.itemWidth = calcItemWidth(s);
+                setWidths(s);
+                s.itemsPerSlide = calcItemsPerSlide(s);
                 s.slidePosition = 0;
-                setTimeout(function() {
+                setTimeout(() => {
+                    // fade slider back in.
                     s.slider.style.opacity = 1;
                     slide();
                 }, safariFixDelay);
             }, safariFixDelay);
         });
     }
-    setWidths();
+
+    calcAndSetWidths();
 
     window.addEventListener('resize', () => {
         // call setWidths once the screen has finished resizing.
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(setWidths, 250);
+        resizeTimer = setTimeout(calcAndSetWidths, 250);
     });
 
     setInterval(() => {
         slide(sliders);
-    }, opts.sInterval);
+    }, sInterval);
 }
 
 // if jQuery is present, create a plugin.
