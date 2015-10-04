@@ -27,7 +27,7 @@ function BlockSlider(collection, {
     try {
         // can collection be found ?
         if (!collection || !collection.length && !collection.querySelector) {
-            throw new Error(`${lgStart}Supplied slider could not be found.`);
+            throw new Error(`${lgStart}Supplied slider(s) could not be found.`);
         }
     }
     catch(e) {
@@ -42,17 +42,16 @@ function BlockSlider(collection, {
             items,
             duration,
             sliderName = slider.id ? '#' + slider.id : '.' + slider.className,
-            msg1 = 'Block Slider: ',
             msg2 = ' could not be found as a direct descendant of ';
         try {
             wrap = slider.querySelector(wrapClass);
             if (!wrap) {
-                throw new Error(`${msg1}'${wrapClass}'${msg2}'${sliderName}.'`);
+                throw new Error(`${lgStart}'${wrapClass}'${msg2}'${sliderName}.'`);
             } 
             else {
                 items = wrap.querySelector(itemsClass);
                 if (!items) {
-                    throw new Error(`${msg1}'${itemsClass}'${msg2}'${wrapClass}.'`);
+                    throw new Error(`${lgStart}'${itemsClass}'${msg2}'${wrapClass}.'`);
                 } 
                 else {
                     items = [].slice.call(items.children, 0);                    
