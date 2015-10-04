@@ -3,7 +3,7 @@ Yet another slider.. yet this one your slides are dictated by CSS or your grid s
 
 This slider does not come with any controls, it autoslides based on the supplied timing values, or the plugins default timing.
 
-It's main use is for grouping company logos onto a single row, as the screen size reduces the logos do not stack, instead the grid dictates how many items to show on the screen at any given moment.  The cycle resets upon an screen resize event.
+It's main use is for grouping company logos onto a single row, as the screen size reduces the logos do not stack, instead the grid (Your CSS) dictates how many items to show on the screen at any given moment.  The cycle resets following a screen resize event.
 
 * IE9+ compatible as it uses CSS transforms. On IE9 there is no animation between slide transitions due to lack of CSS transition support on IE9.
 * Library agnostic.  If jQuery is present it will register itself as a plugin
@@ -17,8 +17,6 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 http://codepen.io/rbrtsmith/pen/ZbeXqa
 
 ##Useage
-**Notice:** Block Slider is currently undergoing beta testing.
-
 HTML markup - This example is using the Twitter Bootstrap grid, and for large screens displays 6 items with no sliding, smaller screens it displays 4 items, and 3 items on the smallest screens.  You may use any grid system you like, or roll with your own.
 You are not restricted to uses the `<div>`s in this example you can use any block-level elements that suit your purpose.  You can also nest anything inside of the individual items.
 ```html
