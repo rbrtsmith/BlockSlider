@@ -152,8 +152,10 @@ function BlockSlider(collection, {
     });
 
     setInterval(() => {
-        if (window.requestAnimationFrame) {
-            requestAnimationFrame(slide(sliders));            
+        if (requestAnimationFrame) {
+            requestAnimationFrame(() => {
+                slide(sliders)
+            });            
         } else {
             slide(sliders); 
         }
