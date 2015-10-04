@@ -16,6 +16,14 @@ It's main use is for grouping company logos onto a single row, as the screen siz
 ##Demo
 http://codepen.io/rbrtsmith/pen/ZbeXqa
 
+##Install
+
+###NPM
+```
+npm install block-slider
+```
+
+
 ##Useage
 HTML markup - This example is using the Twitter Bootstrap grid, and for large screens displays 6 items with no sliding, smaller screens it displays 4 items, and 3 items on the smallest screens.  You may use any grid system you like, or roll with your own.
 You are not restricted to uses the `<div>`s in this example you can use any block-level elements that suit your purpose.  You can also nest anything inside of the individual items.
