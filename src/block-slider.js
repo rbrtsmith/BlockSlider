@@ -152,7 +152,11 @@ function BlockSlider(collection, {
     });
 
     setInterval(() => {
-        slide(sliders);
+        if (window.requestAnimationFrame) {
+            requestAnimationFrame(slide(sliders));            
+        } else {
+            slide(sliders); 
+        }
     }, sInterval);
 }
 
