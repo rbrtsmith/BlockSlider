@@ -18,7 +18,7 @@ http://codepen.io/rbrtsmith/pen/ZbeXqa
 
 ##Install
 
-###NPM
+**NPM**
 ```
 npm install block-slider
 ```
