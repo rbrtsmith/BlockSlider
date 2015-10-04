@@ -22,6 +22,10 @@ http://codepen.io/rbrtsmith/pen/ZbeXqa
 ```
 npm install block-slider
 ```
+**Bower**
+```
+bower install block-slider --save
+```
 
 
 ##Useage
