@@ -154,7 +154,7 @@ function BlockSlider(collection, {
     setInterval(() => {
         if (requestAnimationFrame) {
             requestAnimationFrame(() => {
-                slide(sliders)
+                slide(sliders);
             });            
         } else {
             slide(sliders); 
