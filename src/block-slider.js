@@ -48,15 +48,18 @@ function BlockSlider(collection, {
             wrap = slider.querySelector(wrapClass);
             if (!wrap) {
                 throw new Error(`${msg1}'${wrapClass}'${msg2}'${sliderName}.'`);
-            } else {
+            } 
+            else {
                 items = wrap.querySelector(itemsClass);
                 if (!items) {
                     throw new Error(`${msg1}'${itemsClass}'${msg2}'${wrapClass}.'`);
-                } else {
+                } 
+                else {
                     items = [].slice.call(items.children, 0);                    
                 }
             }
-        } catch(e) {
+        } 
+        catch(e) {
             console.warn(e.message);
             return false;
         }
