@@ -57,7 +57,7 @@ $('#block-slider').BlockSlider();
 ```
 
 ##Settings / API
-The Block Slider can take an optional second parameter (First when using jQuery).  
+The Block Slider can take an optional second argument (First when using jQuery).  
 Default settings:
 ```javascript
 {
