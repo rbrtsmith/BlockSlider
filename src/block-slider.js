@@ -6,20 +6,61 @@ function BlockSlider(collection, {
 }) {
     'use strict';
     const safariFixDelay = /constructor/i.test(window.HTMLElement) ? 500 : 0,
-        sliders = [];
+        sliders = [],
+        lgStart = 'Block Slider: ';
     let resizeTimer;
 
-    // if collection not found, return.
-    if (!collection || !collection.length && !collection.querySelector) {
+    function testTiming(timing) {
+        if (typeof timing !== 'number') {
+            console.warn(`${lgStart}Supplied timing: '${timing}' is not an integer`);
+            return false;
+        }
+        return true;
+    }
+    if (! testTiming(sInterval)) {
+        sInterval = 2000;
+    }
+    if (! testTiming(sTransition)) {
+        sTransition = 400;
+    }
+    
+    try {
+        // can collection be found ?
+        if (!collection || !collection.length && !collection.querySelector) {
+            throw new Error(`${lgStart}Supplied slider could not be found.`);
+        }
+    }
+    catch(e) {
+        console.warn(e.message);
         return;
     }
 
     const calcTransiton = () => sTransition / 1000;
 
     function cache(slider) {
-        const wrap = slider.querySelector(wrapClass),
-            items = [].slice.call(wrap.querySelector(itemsClass).children, 0),
-            duration = calcTransiton();
+        let wrap,
+            items,
+            duration,
+            sliderName = slider.id ? '#' + slider.id : '.' + slider.className,
+            msg1 = 'Block Slider: ',
+            msg2 = ' could not be found as a direct descendant of ';
+        try {
+            wrap = slider.querySelector(wrapClass);
+            if (!wrap) {
+                throw new Error(`${msg1}'${wrapClass}'${msg2}'${sliderName}.'`);
+            } else {
+                items = wrap.querySelector(itemsClass);
+                if (!items) {
+                    throw new Error(`${msg1}'${itemsClass}'${msg2}'${wrapClass}.'`);
+                } else {
+                    items = [].slice.call(items.children, 0);                    
+                }
+            }
+        } catch(e) {
+            console.warn(e.message);
+            return false;
+        }
+        duration = calcTransiton();
         slider.setAttribute('style', 'overflow: hidden; opacity: 0');
         wrap.setAttribute('style', `-webkit-transition: -webkit-transform ${duration}s;transition: transform ${duration}s;`);
         sliders.push({
