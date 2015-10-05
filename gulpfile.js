@@ -34,6 +34,16 @@ gulp.task('JS', function() {
         .pipe(livereload());
 });
 
+gulp.task('NPM-JS', function() {
+    return gulp
+        .src('src/block-slider.js')
+        .pipe(plumber())
+            .pipe(babel())
+        .pipe(rename('index.js'))
+        .pipe(gulp.dest('./'))
+        .pipe(livereload());
+});
+
 gulp.task('default', ['JS'], function() {
     livereload.listen();
     gulp.watch('src/block-slider.js', ['JS']);
