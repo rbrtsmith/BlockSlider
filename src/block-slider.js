@@ -9,6 +9,7 @@ function BlockSlider(collection, {
         sliders = [],
         lgStart = 'Block Slider: ';
     let resizeTimer;
+    let mouseOver = false;
 
     function testTiming(timing) {
         if (typeof timing !== 'number') {
@@ -85,6 +86,7 @@ function BlockSlider(collection, {
     const hasReachedEnd = s => -(s.slidePosition + 1) > s.wrapWidth - s.sliderWidth;
 
     function slide() {
+        if(mouseOver) return;
         sliders.forEach(s => {
             const wrap = s.wrap,
                 str = `translate3d(${s.slidePosition}px, 0, 0)`;
@@ -150,6 +152,17 @@ function BlockSlider(collection, {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(calcAndSetWidths, 250);
     });
+
+    collection.addEventListener('mouseover', () => {
+        //pause slider on mouseover
+        mouseOver = true;
+    });
+
+    collection.addEventListener('mouseout', () => {
+        //start slider on mouseout
+        mouseOver = false;
+    });
+
 
     setInterval(() => {
         if (requestAnimationFrame) {

@@ -21,7 +21,7 @@ gulp.task('JS', function() {
     return gulp
         .src('src/block-slider.js')
         .pipe(plumber())
-        .pipe(esLint())
+        // .pipe(esLint())
         .pipe(esLint.format())
         .pipe(sourcemaps.init())
             .pipe(babel())
